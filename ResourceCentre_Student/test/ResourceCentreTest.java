@@ -116,6 +116,7 @@ public class ResourceCentreTest {
 	@Test
 	public void doLoanCamcorderTest() {
 		//fail("Not yet implemented");
+		
 		// write your code here
 		
 
@@ -154,23 +155,26 @@ public class ResourceCentreTest {
 	
 	@Test
 	public void doReturnCamcorderTest() {
-		//fail("Not yet implemented");
-		// write your code here
+		assertNotNull("Test if there is valid camcorder arraylist to return to",camcorderList);
 		
-		//normal: can return an available item
-		//error: cannot return an item that is available
-		//error:  cannot return an item that is not existing
+		ResourceCentre.addCamcorder(camcorderList, cc1);
 		
-		// Test if Item list is not null but empty, so that can return item
-		assertNotNull("Test if there is valid Camcorder arraylist to add to", camcorderList);
+		cc1.setIsAvailable(false);
+		boolean ok = ResourceCentre.doReturnCamcorder(camcorderList, camcorderList.get(0).getAssetTag());
+		assertTrue("Test if an available item is ok to return? ", ok);
 		
-		//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
-		String allCamcorder= ResourceCentre.retrieveAllCamcorder(camcorderList);
-
-		String testOutput = String.format("%-10s %-30s %-10s %-10s %-20d\n","CC0011", "Nikon HDSLR", "Yes", "", 40);
-		testOutput += String.format("%-10s %-30s %-10s %-10s %-20d\n","CC0012", "Sony DSC-RX100M7", "Yes", "", 20);
-			
-		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
+		ok = ResourceCentre.doReturnCamcorder(camcorderList, camcorderList.get(0).getAssetTag());
+		assertFalse("Test if the same item is Not ok to return again? ", ok);
+		
+		ResourceCentre.addCamcorder(camcorderList, cc2);
+		cc2.setIsAvailable(false);
+		ok = ResourceCentre.doReturnCamcorder(camcorderList, camcorderList.get(1).getAssetTag());
+		assertTrue("Test if nu-available item is ok to return? ", ok);
+		
+		ok = ResourceCentre.doReturnCamcorder(camcorderList, "CC0013");
+		assertFalse("Test if the non-esiting item is ok return? ", ok);
+		
+		
 	}
 	@Test
 	public void doReturnChromebookTest() {
