@@ -115,39 +115,47 @@ public class ResourceCentreTest {
 
 	@Test
 	public void doLoanCamcorderTest() {
-		//fail("Not yet implemented");
+
+		ResourceCentre.addCamcorder(camcorderList, cc1);
+		Boolean ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC011", "8-8-2020");
+		assertTrue("Test if an available item is ok to loan?", ok);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC011", "8-8-2020");
 		
-		// write your code here
+		assertFalse("Test if an same item is NOT ok to loan again?", ok);
+		ResourceCentre.addCamcorder(camcorderList, cc2);
+		cc2.setIsAvailable(false);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC012", "8-8-2020");
 		
+		assertFalse("Test that un-available item is NOT ok to loan?", ok);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC013", "8-8-2020");
+		
+		assertFalse("Test that non-existing item is NOT ok to loan?", ok);
+
 
 		
 	}
 	
 	@Test
 	public void doLoanChromebookTest() {
+		// boundary
+				assertNotNull("test if arrayList is legit to use for loan",chromebookList);
+				
+				ResourceCentre.addChromebook(chromebookList, cb1);
+		        // normal condition
+				Boolean loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0011","23-7-2020");
+				assertTrue("Test if an available item is available to loan?",loan);
+				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0011","23-7-2020");
+				assertFalse("Test if an item will not available to loan?",loan);
+				
+				//error condition 
+				ResourceCentre.addChromebook(chromebookList, cb2);
+				cb2.setIsAvailable(false);
+				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0012","23-7-2020");
+				assertFalse("Test if  non-available item is not able to loan?",loan);
+				//error condition 
+				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0020","23-7-2020");
+				assertFalse("Test if  non exisiting chromebook is not able to loan ?",loan);
 		
-		ResourceCentre.viewAllChromebook(chromebookList);
-		String tag = Helper.readString("Enter asset tag > ");
-		String due = Helper.readString("Enter due date > ");
-		assertNotNull("check that asset Tag of chromebook  is entered when prompted", tag);
-		assertNotNull("check that due date of chromebook  is entered when prompted",due);
-		
-		Boolean isLoaned =ResourceCentre.doLoanChromebook(chromebookList, tag, due);
-		assertNotNull("check that there is a boolean value",isLoaned);
-		String output="Invalid asset tag";
-		String output3="\"Camcorder \" + tag + \" loaned out";
-		String output1="";
-		String output2="";
-		
-		if (isLoaned == false) {
-			 output1="Invalid asset tag";
-			System.out.println(output1);
-			assertEquals("Check that output for false is correct",output ,output1 );
-		} else {
-			 output2="\"Camcorder \" + tag + \" loaned out";
-			System.out.println(output2);
-			assertEquals("Check that output for true is correct",output3 ,output2 );
-		}
 		
 		
 		
