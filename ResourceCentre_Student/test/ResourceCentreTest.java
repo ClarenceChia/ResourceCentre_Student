@@ -110,7 +110,7 @@ public class ResourceCentreTest {
 		testOutput += String.format("CB0012", "SAMSUNG Chromebook 4+", "Win 10");
 	
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allChromebook);
-		
+		 
 	}
 
 	@Test
