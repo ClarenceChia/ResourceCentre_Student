@@ -153,7 +153,35 @@ public class ResourceCentreTest {
 	@Test
 	public void doReturnChromebookTest() {
 		//fail("Not yet implemented");
-		// write your code here
+		
+		// Test if Item list is not null but empty, so that can return item
+		assertNotNull("Test if there is valid chromebook arraylist to add to", chromebookList);
+		
+		//cb1
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		cb1.setIsAvailable(false);
+		Boolean ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
+		//normal: can return an unavailable item
+		assertTrue("Test if an available item can be return?", ok);
+		
+		ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
+		//error: cannot return an item that is available
+		assertFalse("Test if an available item cannot be return?", ok);
+		
+		//cb2
+		ResourceCentre.addChromebook(chromebookList, cb2);
+		cb2.setIsAvailable(false);
+		ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0012");
+		//normal: can return an unavailable item
+		assertTrue("Test if an available item can be return?", ok);
+		
+		ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0012");
+		//error: cannot return an item that is available
+		assertFalse("Test if an available item cannot be return?", ok);
+
+		ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0013");
+		//error:  cannot return an item that is not existing
+		assertFalse("Test if an available item cannot be return?", ok);
 	}
 	
 	@After
