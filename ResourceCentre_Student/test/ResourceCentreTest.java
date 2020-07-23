@@ -125,8 +125,7 @@ public class ResourceCentreTest {
 	
 	@Test
 	public void doLoanChromebookTest() {
-		//fail("Not yet implemented");
-		// write your code here
+		
 		ResourceCentre.viewAllChromebook(chromebookList);
 		String tag = Helper.readString("Enter asset tag > ");
 		String due = Helper.readString("Enter due date > ");
