@@ -186,7 +186,7 @@ public class ResourceCentreTest {
 	public void doReturnChromebookTest() {
 		//fail("Not yet implemented");
 		
-		// Test if Item list is not null but empty, so that can return item
+		//Test if Item list is not null but empty, so that can return item
 		assertNotNull("Test if there is valid chromebook arraylist to add to", chromebookList);
 		
 		//cb1
