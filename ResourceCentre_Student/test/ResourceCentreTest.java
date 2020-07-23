@@ -193,36 +193,33 @@ public class ResourceCentreTest {
 	}
 	@Test
 	public void doReturnChromebookTest() {
-		//fail("Not yet implemented");
+		//List Not NULL - to add item
+		assertNotNull("Test for Valid Chromebook List", chromebookList);
 		
-		//Test if Item list is not null but empty, so that can return item
-		assertNotNull("Test if there is valid chromebook arraylist to add to", chromebookList);
-		
-		//cb1
+		//Add item 
 		ResourceCentre.addChromebook(chromebookList, cb1);
-		cb1.setIsAvailable(false);
-		boolean ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
-		//normal: can return an unavailable item
-		assertTrue("Test if an available item can be return?", ok);
-		
-		ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
-		//error: cannot return an item that is available
-		assertFalse("Test if an available item cannot be return?", ok);
-		
-		//cb2
 		ResourceCentre.addChromebook(chromebookList, cb2);
+		cb1.setIsAvailable(false);
 		cb2.setIsAvailable(false);
-		ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0012");
-		//normal: can return an unavailable item
-		assertTrue("Test if an available item can be return?", ok);
 		
-		ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0012");
-		//error: cannot return an item that is available
-		assertFalse("Test if an available item cannot be return?", ok);
+		//Can Return An Item On Loan (NORMAL)
+		assertTrue("Test if an item on loan can be return", 
+				    ResourceCentre.doReturnChromebook(chromebookList, "CB0011"));
+		assertTrue("Test if an item on loan can be return", 
+			        ResourceCentre.doReturnChromebook(chromebookList, "CB0012"));
+		
+		//Can't Return An Item That Is Available (ERROR)
+		assertFalse("Test if an available item cannot be return?",
+				    ResourceCentre.doReturnChromebook(chromebookList, "CB0011"));
+		assertFalse("Test if an available item cannot be return?",
+			        ResourceCentre.doReturnChromebook(chromebookList, "CB0012"));
+		
+		//Can't Return An Item That Is Non-existent (ERROR)
+		assertFalse("Test if an available item cannot be return?",
+			        ResourceCentre.doReturnChromebook(chromebookList, "Chromebook 11"));
+		assertFalse("Test if an available item cannot be return?",
+			        ResourceCentre.doReturnChromebook(chromebookList, "Chromebook 12"));
 
-		ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0013");
-		//error:  cannot return an item that is not existing
-		assertFalse("Test if an available item cannot be return?", ok);
 	}
 	
 	@After
