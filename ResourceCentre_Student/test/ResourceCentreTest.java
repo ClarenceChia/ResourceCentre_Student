@@ -209,15 +209,15 @@ public class ResourceCentreTest {
 			        ResourceCentre.doReturnChromebook(chromebookList, "CB0012"));
 		
 		//Can't Return An Item That Is Available (ERROR)
-		assertFalse("Test if an available item cannot be return?",
+		assertFalse("Test if an available item cannot be return",
 				    ResourceCentre.doReturnChromebook(chromebookList, "CB0011"));
-		assertFalse("Test if an available item cannot be return?",
+		assertFalse("Test if an available item cannot be return",
 			        ResourceCentre.doReturnChromebook(chromebookList, "CB0012"));
 		
 		//Can't Return An Item That Is Non-existent (ERROR)
-		assertFalse("Test if an available item cannot be return?",
+		assertFalse("Test if a non-existent item cannot be return",
 			        ResourceCentre.doReturnChromebook(chromebookList, "Chromebook 11"));
-		assertFalse("Test if an available item cannot be return?",
+		assertFalse("Test if a non-existent item cannot be return",
 			        ResourceCentre.doReturnChromebook(chromebookList, "Chromebook 12"));
 
 	}
