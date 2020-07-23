@@ -140,24 +140,28 @@ public class ResourceCentreTest {
 	
 	@Test
 	public void doLoanChromebookTest() {
-		// boundary
+				// boundary:test for if arraylist is in reach , can be used
 				assertNotNull("test if arrayList is legit to use for loan",chromebookList);
-				
+				// to add a chromebook into chromebookList
 				ResourceCentre.addChromebook(chromebookList, cb1);
-		        // normal condition
-				Boolean loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0011","23-7-2020");
+		        // normal condition:test if user can Loan an available item
+				Boolean loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0011","23/7");
 				assertTrue("Test if an available item is available to loan?",loan);
-				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0011","23-7-2020");
-				assertFalse("Test if an item will not available to loan?",loan);
+				// normal condition:test if item can be not available
+				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0011","23/7");
+				assertFalse("Test if item can be not available to loan?",loan);
 				
-				//error condition 
+				// to add a chromebook into chromebookList
 				ResourceCentre.addChromebook(chromebookList, cb2);
-				cb2.setIsAvailable(false);
-				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0012","23-7-2020");
-				assertFalse("Test if  non-available item is not able to loan?",loan);
-				//error condition 
-				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0020","23-7-2020");
-				assertFalse("Test if  non exisiting chromebook is not able to loan ?",loan);
+				
+				//error condition: test if user cannot Loan an unavailable item
+				cb2.setIsAvailable(false);  // to make chromebook 2 unavailable 
+				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0012","23/7");
+				assertFalse("Test if  user can lend an chromebook that is not available ?",loan);
+				
+				//error condition : test if user can loan an non-existing chromebook with invalid asset tag
+				loan=ResourceCentre.doLoanChromebook(chromebookList, "HI","23/7");
+				assertFalse("test if user can loan an non-existing chromebook with invalid asset tag ?",loan);
 		
 		
 		
