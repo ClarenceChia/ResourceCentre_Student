@@ -196,7 +196,7 @@ public class ResourceCentreTest {
 		//cb1
 		ResourceCentre.addChromebook(chromebookList, cb1);
 		cb1.setIsAvailable(false);
-		Boolean ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
+		boolean ok = ResourceCentre.doReturnChromebook(chromebookList, "CB0011");
 		//normal: can return an unavailable item
 		assertTrue("Test if an available item can be return?", ok);
 		
