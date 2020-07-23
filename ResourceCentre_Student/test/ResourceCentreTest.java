@@ -115,8 +115,24 @@ public class ResourceCentreTest {
 
 	@Test
 	public void doLoanCamcorderTest() {
+
+		ResourceCentre.addCamcorder(camcorderList, cc1);
 		
+		Boolean ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC011", "8-8-2020");
+		assertTrue("Test if an available item is ok to loan?", ok);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC011", "8-8-2020");
 		
+		assertFalse("Test if an same item is NOT ok to loan again?", ok);
+		ResourceCentre.addCamcorder(camcorderList, cc2);
+		cc2.setIsAvailable(false);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC012", "8-8-2020");
+		
+		assertFalse("Test that un-available item is NOT ok to loan?", ok);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC013", "8-8-2020");
+		
+		assertFalse("Test that non-existing item is NOT ok to loan?", ok);
+
+
 		
 	}
 	
