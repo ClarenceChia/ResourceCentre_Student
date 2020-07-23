@@ -236,7 +236,7 @@ public class ResourceCentre {
 				
 				isLoaned = true;
 				
-			}s
+			}
 		}
 		return isLoaned;
 		
