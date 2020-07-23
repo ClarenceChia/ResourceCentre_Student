@@ -184,13 +184,12 @@ public class ResourceCentre {
 		String description = Helper.readString("Enter description > ");
 		String os = Helper.readString("Enter operating System ");
 
-		Chromebook cb= new Chromebook(tag, description, os);
-		// write your code here
+		Chromebook cb= new Chromebook(tag, description, os);	
 		return cb;
 		
 	}	
 	public static void addChromebook(ArrayList<Chromebook> chromebookList, Chromebook cb) {
-		// write your code here
+		
 		chromebookList.add(cb);
 		System.out.println("Chromebook added!");
 	}
