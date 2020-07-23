@@ -157,7 +157,7 @@ public class ResourceCentre {
 		return output;
 	}
 	public static void viewAllChromebook(ArrayList<Chromebook> chromebookList) {
-		
+		ss
 		String output = retrieveAllChromebook(chromebookList);
 		System.out.println(output);
 	}
