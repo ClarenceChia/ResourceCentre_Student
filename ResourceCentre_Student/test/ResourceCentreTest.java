@@ -118,12 +118,40 @@ public class ResourceCentreTest {
 		//fail("Not yet implemented");
 		// write your code here
 		
+		
+		
+		
 	}
 	
 	@Test
 	public void doLoanChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		ResourceCentre.viewAllChromebook(chromebookList);
+		String tag = Helper.readString("Enter asset tag > ");
+		String due = Helper.readString("Enter due date > ");
+		assertNotNull("check that asset Tag of chromebook  is entered when prompted", tag);
+		assertNotNull("check that due date of chromebook  is entered when prompted",due);
+		
+		Boolean isLoaned =ResourceCentre.doLoanChromebook(chromebookList, tag, due);
+		assertNotNull("check that there is a boolean value",isLoaned);
+		String output="Invalid asset tag";
+		String output3="\"Camcorder \" + tag + \" loaned out";
+		String output1="";
+		String output2="";
+		
+		if (isLoaned == false) {
+			 output1="Invalid asset tag";
+			System.out.println(output1);
+			assertEquals("Check that output for false is correct",output ,output1 );
+		} else {
+			 output2="\"Camcorder \" + tag + \" loaned out";
+			System.out.println(output2);
+			assertEquals("Check that output for true is correct",output3 ,output2 );
+		}
+		
+		
+		
 	}
 	
 	@Test
