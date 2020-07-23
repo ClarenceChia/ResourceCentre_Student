@@ -191,6 +191,8 @@ public class ResourceCentre {
 	}	
 	public static void addChromebook(ArrayList<Chromebook> chromebookList, Chromebook cb) {
 		// write your code here
+		chromebookList.add(cb);
+		System.out.println("Chromebook added!");
 	}
 	
 	//================================= Option 3 Loan =================================
