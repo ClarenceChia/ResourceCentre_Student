@@ -115,19 +115,51 @@ public class ResourceCentreTest {
 
 	@Test
 	public void doLoanCamcorderTest() {
-		//fail("Not yet implemented");
-		// write your code here
+
+		ResourceCentre.addCamcorder(camcorderList, cc1);
 		
-		//normal: can loan an available item
-		//error: cannot loan an item that is not available
-		//error:  cannot loan an item that is not existing
+		Boolean ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC011", "8-8-2020");
+		assertTrue("Test if an available item is ok to loan?", ok);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC011", "8-8-2020");
+		
+		assertFalse("Test if an same item is NOT ok to loan again?", ok);
+		ResourceCentre.addCamcorder(camcorderList, cc2);
+		cc2.setIsAvailable(false);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC012", "8-8-2020");
+		
+		assertFalse("Test that un-available item is NOT ok to loan?", ok);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC013", "8-8-2020");
+		
+		assertFalse("Test that non-existing item is NOT ok to loan?", ok);
+
+
 		
 	}
 	
 	@Test
 	public void doLoanChromebookTest() {
-		//fail("Not yet implemented");
-		// write your code here
+		// boundary
+				assertNotNull("test if arrayList is legit to use for loan",chromebookList);
+				
+				ResourceCentre.addChromebook(chromebookList, cb1);
+		        // normal condition
+				Boolean loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0011","23-7-2020");
+				assertTrue("Test if an available item is available to loan?",loan);
+				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0011","23-7-2020");
+				assertFalse("Test if an item will not available to loan?",loan);
+				
+				//error condition 
+				ResourceCentre.addChromebook(chromebookList, cb2);
+				cb2.setIsAvailable(false);
+				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0012","23-7-2020");
+				assertFalse("Test if  non-available item is not able to loan?",loan);
+				//error condition 
+				loan=ResourceCentre.doLoanChromebook(chromebookList, "CB0020","23-7-2020");
+				assertFalse("Test if  non exisiting chromebook is not able to loan ?",loan);
+		
+		
+		
+		
 	}
 	
 	@Test
