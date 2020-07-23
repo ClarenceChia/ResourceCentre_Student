@@ -106,8 +106,8 @@ public class ResourceCentreTest {
 		
 		allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
 
-		testOutput = String.format("%-10s %-30s %-10s %-10s %-20d\n","CB0011", "My Google Chromebook 1st", "Mac OS");
-		testOutput += String.format("%-10s %-30s %-10s %-10s %-20d\n","CB0012", "SAMSUNG Chromebook 4+", "Win 10");
+		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0011", "My Google Chromebook 1st","Yes","", "Mac OS");
+		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n","CB0012", "SAMSUNG Chromebook 4+","Yes","", "Win 10");
 	
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allChromebook);
 		 
@@ -115,19 +115,21 @@ public class ResourceCentreTest {
 
 	@Test
 	public void doLoanCamcorderTest() {
-
+		assertNotNull("Test if there is valid camcorder arraylist to loan from", camcorderList);
 		ResourceCentre.addCamcorder(camcorderList, cc1);
-		Boolean ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC011", "8-8-2020");
+		
+		Boolean ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "8-8-2020");
+		
 		assertTrue("Test if an available item is ok to loan?", ok);
-		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC011", "8-8-2020");
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "8-8-2020");
 		
 		assertFalse("Test if an same item is NOT ok to loan again?", ok);
 		ResourceCentre.addCamcorder(camcorderList, cc2);
 		cc2.setIsAvailable(false);
-		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC012", "8-8-2020");
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0012", "8-8-2020");
 		
 		assertFalse("Test that un-available item is NOT ok to loan?", ok);
-		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC013", "8-8-2020");
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0013", "8-8-2020");
 		
 		assertFalse("Test that non-existing item is NOT ok to loan?", ok);
 
