@@ -106,8 +106,8 @@ public class ResourceCentreTest {
 		
 		allChromebook= ResourceCentre.retrieveAllChromebook(chromebookList);
 
-		testOutput = String.format("CB0011", "My Google Chromebook 1st", "Mac OS");
-		testOutput += String.format("CB0012", "SAMSUNG Chromebook 4+", "Win 10");
+		testOutput = String.format("%-10s %-30s %-10s %-10s %-20d\n","CB0011", "My Google Chromebook 1st", "Mac OS");
+		testOutput += String.format("%-10s %-30s %-10s %-10s %-20d\n","CB0012", "SAMSUNG Chromebook 4+", "Win 10");
 	
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allChromebook);
 		 
