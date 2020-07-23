@@ -145,6 +145,7 @@ public class ResourceCentre {
 
 	public static String retrieveAllChromebook(ArrayList<Chromebook> chromebookList) {
 		String output = "";
+		
 		// write your code here
 		for (int i = 0; i < chromebookList.size(); i++) {
 
@@ -178,7 +179,12 @@ public class ResourceCentre {
 	}
 	
 	public static Chromebook inputChromebook() {	
-		Chromebook cb =null;
+		
+		String tag = Helper.readString("Enter asset tag > ");
+		String description = Helper.readString("Enter description > ");
+		String os = Helper.readString("Enter operating System ");
+
+		Chromebook cb= new Chromebook(tag, description, os);
 		// write your code here
 		return cb;
 		
@@ -219,7 +225,26 @@ public class ResourceCentre {
 	
 	public static boolean doLoanChromebook(ArrayList<Chromebook> chromebookList, String tag, String dueDate) {
 		// write your code here
-		return true;
+		boolean isLoaned = false;
+
+		for (int i = 0; i < chromebookList.size(); i++) {
+			if (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag())
+					&& chromebookList.get(i).getIsAvailable() == true) {
+				
+				chromebookList.get(i).setIsAvailable(false);
+				chromebookList.get(i).setDueDate(dueDate);
+				
+				isLoaned = true;
+				
+			}
+		}
+		return isLoaned;
+		
+		
+		
+		
+		
+	
 	}
 	public static void loanChromebook(ArrayList<Chromebook> chromebookList) {
 		ResourceCentre.viewAllChromebook(chromebookList);
